@@ -6,6 +6,12 @@ Set it and forget it approach, while allowing customization. Don't worry about a
 
 Flask Error is designed to catch all errors from code Exceptions or abort(), providing easy to use features for quality of life and faster development.
 
+### Installation
+
+```
+pip install FlaskError
+```
+
 ### Quickstart
 
 ```python
