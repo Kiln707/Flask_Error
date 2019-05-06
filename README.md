@@ -40,7 +40,7 @@ Objects are, error = Exception object, Trace = List of traceback message lines, 
 ### Troubleshooting and Testing Feature
 
 For troubleshooting and testing purposes, the error code, exception, traceback, and request may be rendered on the template.
-To do this, simply set Flask's Testing config property to True.
+To do this, simply set Flask's Testing or Debug config property to True.
 
 NOTE: This is insecure! This feature is only intended for developers testing their site and NOT FOR PRODUCTION!
 
@@ -49,6 +49,15 @@ app = Flask(__name__)
 from flask_error import FlaskError
 FlaskError(app)
 app.config['TESTING']=True
+```
+
+or
+
+```python
+app = Flask(__name__)
+from flask_error import FlaskError
+FlaskError(app)
+app.config['DEBUG']=True
 ```
 
 

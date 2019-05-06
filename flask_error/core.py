@@ -9,6 +9,7 @@ class FlaskError():
         self.app=app
         app.error_handler=self
         self.testing = LocalProxy(lambda:app.config['TESTING'])
+        self.debug = LocalProxy(lambda:app.config['DEBUG'])
         self.config = LocalProxy(lambda: app.config)
         for key. value in __default_config.items():
             self.app.config.setdefault('ERROR_'+key, value)
@@ -38,6 +39,6 @@ class FlaskError():
         trace = self.getErrorInfo()
         if self.callback:
             self.callback(code=errorcode, error=error, trace=trace, request=request)
-        if self.testing:
+        if self.testing or self.debug:
             return render_template(self.template, code=errorcode, message=message, error=error, trace=trace, request=request)
         return render_template(self.template, code=errorcode, message=message)
