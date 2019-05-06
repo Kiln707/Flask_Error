@@ -1,3 +1,9 @@
+<h1>Flask Error</h1>
+<nav>
+  {% for route in endpoints() %}
+    <a href="{{ url_for(route) }}">{{route}}</a>
+  {% endfor %}
+</nav>
 <h1>{{ code }}</h1>
 <p>{{ message }}</p>
 {% if trace %}
