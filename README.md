@@ -80,7 +80,7 @@ Configuration format is ['ERROR_(Error Code)'] = 'Message'
 ### Changing the Template
 
 It is highly recommended to use a custom template as the default is not pretty.
-Both Testing and production renders the same template. It is advised to use the following format:
+Both Testing and production renders the same template. It is advised to use the following format in template:
 
 ```HTML
 <h1>{{ code }}</h1> <!-- Display the error code -->
@@ -94,4 +94,12 @@ Both Testing and production renders the same template. It is advised to use the 
   <h2>Request</h2>
   <p>{{ request }}</p> <!-- Request object. This will get the __repr__ of the request -->
 {% endif %}
+```
+
+For Flask Error to use the template, pass the template path in the constructor
+
+```python
+app = Flask(__name__)
+from flask_error import FlaskError
+FlaskError(app, tempalte='error.html')
 ```
