@@ -2,7 +2,7 @@ from flask import render_template, request
 from werkzeug.local import LocalProxy
 import sys, traceback
 
-from .config import __default_config
+from .config import default_config
 
 class FlaskError():
     def __init__(self, app, template='error/error.html', callback=None):
@@ -11,7 +11,7 @@ class FlaskError():
         self.testing = LocalProxy(lambda:app.config['TESTING'])
         self.debug = LocalProxy(lambda:app.config['DEBUG'])
         self.config = LocalProxy(lambda: app.config)
-        for key. value in __default_config.items():
+        for key, value in default_config.items():
             self.app.config.setdefault('ERROR_'+key, value)
         self.template=template
         self.callback=callback

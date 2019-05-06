@@ -112,3 +112,10 @@ app = Flask(__name__)
 from flask_error import FlaskError
 FlaskError(app, tempalte='error.html')
 ```
+
+
+
+
+### Note on unit tests
+
+pytest is currently not working for Flask Error. If you are interested in assisting in setting up unittests please let me know, as I have not figured it out yet.

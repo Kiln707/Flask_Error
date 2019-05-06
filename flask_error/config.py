@@ -1,4 +1,4 @@
-__default_config={
+default_config={
     '400':'Bad Request',
     '401':'Unauthorized',
     '402':'Payment Required',
