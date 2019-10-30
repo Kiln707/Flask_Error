@@ -1,5 +1,5 @@
 from flask import render_template, request
-from werkzeug.local import LocalProxy
+from werkzeug.local import LocalProxy, InternalServerError
 import sys, traceback
 
 from .config import default_config
@@ -15,7 +15,8 @@ class FlaskError():
             self.app.config.setdefault('ERROR_'+key, value)
         self.template=template
         self.callback=callback
-        app.register_error_handler(Exception, self.handle_error)
+        app.register_error_handler(InternalServerError, self.handle_error)
+        app.register_error_handler(HTTPException, self.handle_error)
 
 
     #   Get a stacktrace on the exception that occoured.
