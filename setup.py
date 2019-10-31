@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md')) as readme:
     long_description = readme.read()
 
 setup(
-    name='FlaskError',
+    name='Flask_Error',
     version='1.0.0',
     description='Easy error code and messages with useful troubleshooting and callback features.',
     long_description=long_description,

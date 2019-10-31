@@ -1,20 +1,31 @@
 from flask import abort
 from flask_error import FlaskError
+import sys
 
 def test_callback(app):
-    called=False
+    errorcode = 500
     def callback_test(code, error, trace, request, **kwargs):
-        print('callback')
-        global called
-        called=True
-    @app.route('/')
-    def test_route():
-        abort(500)
+        print(code, error, trace, request,**kwargs)
+        assert code == errorcode
+    @app.route('/500')
+    def test_route1():
+        abort(errorcode)
 
-    FlaskError(app, callback=callback_test)
+    @app.route('/exception')
+    def test_route2():
+        raise Exception()
+
+    @app.route('/404')
+    def test_route3():
+        abort(404)
+
+    FlaskError(app, callback=[callback_test])
     client = app.test_client()
     try:
-        client.get('/', follow_redirects=True)
+        client.get('/500', follow_redirects=True)
+        client.get('/exception', follow_redirects=True)
+        client.get('/404', follow_redirects=True)
     except:
-        pass
-    assert called, 'not called'
+        print("Unexpected error:", sys.exc_info()[0])
+        assert False
+    raise exception
