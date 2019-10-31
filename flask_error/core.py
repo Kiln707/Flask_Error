@@ -1,17 +1,16 @@
-from flask import render_template, request
+from flask import Blueprint, render_template, request
 from werkzeug.local import LocalProxy
 from werkzeug.exceptions import HTTPException
 import sys, traceback
 from .config import default_config
 
-class FlaskError():
-    def __init__(self, app, template='error/error.html', callback=[]):
+class FlaskError(Blueprint):
+    def __init__(self, app, blueprint_name='error', url_prefix='/error', subdomain='', template_folder='templates/error', callback=[]):
         app.extensions['Error']=self
         self.debug = LocalProxy(lambda:app.config['DEBUG'])
         self.config = LocalProxy(lambda: app.config)
         for key, value in default_config.items():
             app.config.setdefault('ERROR_'+key, value)
-        self.template=template
         if not isinstance(callback, list):
             raise ValueError("Callback must be a list")
         self.callback=callback
@@ -23,8 +22,15 @@ class FlaskError():
             except KeyError:
                 pass
         app.register_error_handler(Exception, self.handle_error)
-        # app.register_error_handler(InternalServerError, self.handle_error)
-        # app.register_error_handler(HTTPException, self.handle_error)
+        self._register_blueprint(app=app, blueprint_name=blueprint_name, url_prefix=url_prefix, subdomain=subdomain, template_folder=template_folder)
+
+    def _register_blueprint(self, app, blueprint_name, url_prefix, subdomain, template_folder):
+        bp = Blueprint(blueprint_name,
+                    __name__,
+                    url_prefix=url_prefix,
+                    subdomain=subdomain,
+                    template_folder=template_folder)
+        app.register_blueprint(bp)
 
 
     #   Get a stacktrace on the exception that occoured.
@@ -48,5 +54,5 @@ class FlaskError():
         for call in self.callback:
             call(code=errorcode, error=error, trace=trace, request=request)
         if self.debug:
-            return render_template(self.template, code=errorcode, message=message, error=error, trace=trace, request=request)
-        return render_template(self.template, code=errorcode, message=message)
+            return render_template('error.html', code=errorcode, message=message, error=error, trace=trace, request=request)
+        return render_template('error.html', code=errorcode, message=message)

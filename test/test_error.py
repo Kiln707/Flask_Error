@@ -13,19 +13,18 @@ def test_callback(app):
 
     @app.route('/exception')
     def test_route2():
-        raise Exception()
+        raise KeyError()
 
     @app.route('/404')
     def test_route3():
         abort(404)
 
-    FlaskError(app, callback=[callback_test])
+    error = FlaskError(app, callback=[callback_test])
     client = app.test_client()
     try:
-        client.get('/500', follow_redirects=True)
-        client.get('/exception', follow_redirects=True)
+        print(client.get('/500', follow_redirects=True))
+        print(client.get('/exception', follow_redirects=True))
         client.get('/404', follow_redirects=True)
     except:
         print("Unexpected error:", sys.exc_info()[0])
         assert False
-    raise exception
