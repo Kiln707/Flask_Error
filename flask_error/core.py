@@ -54,5 +54,5 @@ class FlaskError(Blueprint):
         for call in self.callback:
             call(code=errorcode, error=error, trace=trace, request=request)
         if self.debug:
-            return render_template('error.html', code=errorcode, message=message, error=error, trace=trace, request=request)
-        return render_template('error.html', code=errorcode, message=message)
+            return render_template('error.html', code=errorcode, message=message, error=error, trace=trace, request=request), errorcode
+        return render_template('error.html', code=errorcode, message=message), errorcode
