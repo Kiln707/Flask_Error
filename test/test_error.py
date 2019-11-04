@@ -5,7 +5,8 @@ import sys
 def test_callback(app):
     errorcode = 500
     def callback_test(code, error, trace, request, **kwargs):
-        assert code == errorcode
+        #assert code == errorcode
+        pass
     @app.route('/500')
     def test_route1():
         abort(errorcode)
@@ -21,9 +22,10 @@ def test_callback(app):
     FlaskError(app, callback=[callback_test])
     client = app.test_client()
     try:
-        client.get('/500', follow_redirects=True)
-        client.get('/exception', follow_redirects=True)
-        client.get('/404', follow_redirects=True)
+        print(client.get('/500', follow_redirects=True))
+        print(client.get('/exception', follow_redirects=True))
+        print(client.get('/404', follow_redirects=True))
+        raise Exception()
     except:
         print("Unexpected error:", sys.exc_info()[0])
         assert False
