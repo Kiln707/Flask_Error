@@ -53,6 +53,11 @@ class FlaskError(Blueprint):
         trace = self.getErrorInfo()
         for call in self.callback:
             call(code=errorcode, error=error, trace=trace, request=request)
+        returndata = {}
         if self.debug:
-            return render_template('error.html', code=errorcode, message=message, error=error, trace=trace, request=request), errorcode
-        return render_template('error.html', code=errorcode, message=message), errorcode
+            returndata = {'code': errorcode, 'message': message, 'error': error, 'trace': trace, 'request': request}
+        else:
+            returndata = {'code': errorcode, 'message': message}
+        if request.is_json:
+            return jsonify(returndata), errorcode
+        return render_template('error.html', **returndata), errorcode
