@@ -1,12 +1,12 @@
 default_config={
     '400':'Bad Request',
     '401':'Unauthorized',
-    '402':'Payment Required', #Not implemented
+    '402':'Payment Required',
     '403':'Forbidden',
     '404':'Not Found',
     '405':'Method Not Allowed',
     '406':'Not Acceptable',
-    '407':'Proxy Authentication Required', #Not Implemented
+    '407':'Proxy Authentication Required',
     '408':'Request Timeout',
     '409':'Conflict',
     '410':'Gone',
@@ -18,16 +18,15 @@ default_config={
     '416':'Requested Range Not Satisfiable',
     '417':'Expection Failed',
     '418':'I\'m A Teapot',
-    '420':'Enhance Your Calm',  #Not Implemented
-    '422':'Unprocessable Entity',   #Not Implemeneted
-    '423':'Locked',                 # Not Implemented
+    '420':'Enhance Your Calm',
+    '422':'Unprocessable Entity',
+    '423':'Locked',
     '424':'Failed Dependency',
-    '425':'Reserved for WebDAV',    #Not Implemented
-    '426':'Upgrade Required',       #Not Implemented
+    '426':'Upgrade Required',
     '428':'Precondition Required',
     '429':'Too Many Requests',
     '431':'Request Header Fields Too Large',
-    '444':'No Response',                            #Not Implemented
+    '444':'No Response',
     '449':'Retry With',                             #Not Implemented
     '450':'Blocked By Windows Parental Controls',   #Not Implemented
     '451':'Unavailable for Legal Reasons',          #Not Implemented
