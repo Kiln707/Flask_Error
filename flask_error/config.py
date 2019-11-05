@@ -21,28 +21,19 @@ default_config={
     '420':'Enhance Your Calm',
     '422':'Unprocessable Entity',
     '423':'Locked',
-    '424':'Failed Dependency',
     '426':'Upgrade Required',
-    '428':'Precondition Required',
-    '429':'Too Many Requests',
-    '431':'Request Header Fields Too Large',
     '444':'No Response',
-    '449':'Retry With',                             #Not Implemented
-    '450':'Blocked By Windows Parental Controls',   #Not Implemented
-    '451':'Unavailable for Legal Reasons',          #Not Implemented
-    '499':'Client Closed Request',                  #Not Implemented
+    '451':'Unavailable for Legal Reasons',
     '500':'Internal Server Error',
     '501':'Not Implemented',
     '502':'Bad Gateway',
     '503':'Service Unavailable',
-    '504':'Gateway timeout',                    #Not Implemented
-    '505':'HTTP Version Not Supported',         #Not Implemented
-    '506':'Variant Also Negotiates',            #Not Implemented
-    '507':'Insufficient Storage',               #Not Implemented
-    '508':'Loop Detected',                      #Not Implemented
-    '509':'Bandwidth Limit Exceeded',           #Not Implemented
-    '510':'Not Extended',                       #Not Implemented
-    '511':'Network Authentication Required',    #Not Implemented
-    '598':'Network Read Timeout Error',         #Not Implemented
-    '599':'Network Connect Timeout Error'       #Not Implemented
+    '504':'Gateway timeout',
+    '505':'HTTP Version Not Supported',
+    '506':'Variant Also Negotiates',
+    '507':'Insufficient Storage',
+    '508':'Loop Detected',
+    '509':'Bandwidth Limit Exceeded',
+    '510':'Not Extended',
+    '511':'Network Authentication Required',
 }

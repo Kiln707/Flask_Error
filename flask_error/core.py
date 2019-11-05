@@ -17,11 +17,7 @@ class FlaskError(Blueprint):
         self.callback=callback
         for cls in HTTPException.__subclasses__():
             app.register_error_handler(cls, self.handle_error)
-        for code in range(400, 599):
-            try:
-                app.register_error_handler(code, self.handle_error)
-            except KeyError:
-                pass
+            print(cls.code)
         app.register_error_handler(Exception, self.handle_error)
         self._register_blueprint(app=app, blueprint_name=blueprint_name, url_prefix=url_prefix, subdomain=subdomain, template_folder=template_folder)
 
