@@ -3,6 +3,7 @@ from werkzeug.local import LocalProxy
 from werkzeug.exceptions import HTTPException
 import sys, traceback
 from .config import default_config
+from .exceptions import *
 
 class FlaskError(Blueprint):
     def __init__(self, app, blueprint_name='error', url_prefix='/error', subdomain='', template_folder='templates/error', callback=[]):

@@ -8,33 +8,21 @@ class ProxyAuthenticationRequired(HTTPException):
     code = 407
     description = 'Please authenticate with proxy'
 
-class EnhanceCalm(HTTPException):
-    code = 420
-    description = 'Please authenticate with proxy'
-
 class UnprocessableEntity(HTTPException):
     code = 422
-    description = 'Please authenticate with proxy'
+    description = 'Unable to process request due to bad semantics'
 
 class Locked(HTTPException):
     code = 423
-    description = 'Please authenticate with proxy'
+    description = 'Requested resource is locked and unavailable.'
 
 class UpgradeRequired(HTTPException):
     code = 426
-    description = 'Please authenticate with proxy'
+    description = 'Please connect with an upgraded protocol.'
 
 class NoResponse(HTTPException):
     code = 444
-    description = 'Please authenticate with proxy'
-
-class RetryWith(HTTPException):
-    code = 449
-    description = 'Please authenticate with proxy'
-
-class BlockedByWindowsParentalControls(HTTPException):
-    code = 450
-    description = 'Please authenticate with proxy'
+    description = 'Server provided no response.'
 
 class UnavailableforLegalReasons(HTTPException):
     code = 451
